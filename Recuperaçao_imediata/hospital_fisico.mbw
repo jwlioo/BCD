@@ -1,0 +1,31 @@
+-- Criação do banco de dados Hospital
+CREATE DATABASE IF NOT EXISTS Hospital;
+USE Hospital;
+
+-- Criação da tabela Paciente
+CREATE TABLE IF NOT EXISTS Paciente (
+    id_paciente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    endereco VARCHAR(200),
+    telefone VARCHAR(15)
+);
+
+-- Criação da tabela Medico
+CREATE TABLE IF NOT EXISTS Medico (
+    id_medico INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especialidade VARCHAR(50) NOT NULL,
+    telefone VARCHAR(15)
+);
+
+-- Criação da tabela Consulta
+CREATE TABLE IF NOT EXISTS Consulta (
+    id_consulta INT AUTO_INCREMENT PRIMARY KEY,
+    id_paciente INT NOT NULL,
+    id_medico INT NOT NULL,
+    data_consulta DATE NOT NULL,
+    hora_consulta TIME NOT NULL,
+    FOREIGN KEY (id_paciente) REFERENCES Paciente(id_paciente),
+    FOREIGN KEY (id_medico) REFERENCES Medico(id_medico)
+);
